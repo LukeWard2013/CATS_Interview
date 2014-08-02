@@ -1,0 +1,19 @@
+﻿@model CATS_Interview.View_Models.VehicleElementViewModel
+@Html.AntiForgeryToken()
+<div id="@Model.ElementEnum@Model.ElementWeight">
+    @Html.HiddenFor(m=>m.ElementWeightId)
+    <div class="editor">
+        <label>
+        @{
+            @(Model.ElementEnum.ToString()=="Chassis"? "Chassis": "Bodies")
+        }
+        </label>
+        @Html.ListBoxFor(s => s.SelectedElements, Model.ElementList,  new { ondblclick = "removeItem(this);" })
+    </div>
+    <div class="editor">
+        @Html.Label(@Model.ElementEnum.ToString() + " Options") 
+        @Html.DropDownListFor(bto => bto.SelectedElement, Model.ElementOptions, new {onclick ="addItem(this, $('#" + @Html.IdFor(model => model.SelectedElements) + "'));"})
+    </div>
+    <br/>
+</div>
+

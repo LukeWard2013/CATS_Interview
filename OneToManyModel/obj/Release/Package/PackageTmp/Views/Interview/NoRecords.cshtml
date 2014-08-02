@@ -1,0 +1,19 @@
+﻿@model dynamic
+@using CATS_Interview.Model
+@{
+    ViewBag.Title = "No records found";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Styles/catsInterview.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div id="mainContent">
+        No records were found in the selected category
+    </div>
+    @Html.ValidationSummary()
+</body>
+</html>

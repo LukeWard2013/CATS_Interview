@@ -1,0 +1,210 @@
+﻿*{
+    font-family:Calibri, "Lucida Console", monospace; 
+    font-size: 12pt;
+    padding: 0;
+    margin: 0;
+}
+.header {
+    position: fixed;
+    background-color: white;
+    z-index: 1;
+}
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+
+body{
+    background-color:#ffffff
+}
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+.main-content {
+    padding-top: 30px;
+}
+    
+h1 {
+    font-size: 150%;
+    margin: 0 10px 10px 0px;
+}
+h2 {
+    font-size: 16pt;
+    margin: 0 10px 10px 0px;
+}
+h3 {
+    font-size: 12pt;
+    margin: 0 10px 10px 0px;
+}
+.bodies {
+    background-color: #666666;
+    width: 200px;
+}
+/* menu
+----------------------------------------------------------*/
+ul#menu {
+    font-size: 12pt;
+    font-weight: 600;
+    margin: 0 0 5px;
+    padding: 0;
+    text-align: right;
+}
+
+ul#menu li {
+    display: inline;
+    list-style:none;
+    padding-left: 15px;
+}
+
+ul#menu li a {
+    background: none;
+    color: #999;
+    text-decoration: none;
+}
+
+ul#menu li a:hover {
+    color: #333;
+    text-decoration: none;
+}
+    ul#menu li a:visited
+    {
+        text-decoration: none;
+    }
+.lineBreak {
+    width: 100%;
+    background-color: black;
+    height: 1px;
+    margin: 5px 0px 5px 0px;
+    clear:both
+}
+
+.editor label {
+    float: left;
+    width: 250px;   
+    text-align: left; 
+}
+
+.ui-widget .editor label {
+    float: left;
+    width: 250px;   
+    text-align: left;
+}
+
+.editor textarea,input,select {
+    width: 280px; 
+    margin: 0 0px 0px 10px;
+    color: blue;
+}
+
+.ui-widget .editor select[multiple]
+{
+    height: 100px;
+}
+
+.ui-widget .editor input, select{
+    width: 280px;
+    margin: 0 0 0 10px;
+    color: blue;
+    box-sizing: content-box; 
+}
+.contact {
+    margin-bottom: 10px;
+}
+legend {
+    width: 200px;
+    background: #EE3124;
+    color: white;
+    border: solid 0px black;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 6px;
+    margin-top: 5px;
+ }
+.currentQuestion {
+    color: white;
+    font-weight: bold;
+    background-color: #EE3124;
+}
+.resetQuestion {
+    color: black;
+    font-weight: normal;
+    background-color: white;
+}
+fieldset {
+    margin-top: 25px;
+    padding: 10px;
+    color: black;
+    border: solid 1px black;
+}
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
+
+/* tabs
+-----------------------------------------------------------*/
+
+#tabs .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active  {
+    background-image: none;
+    background-color: #EE3124;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+    color: #FFFFFF;
+}
+#tabs .ui-tabs-nav li { 
+    margin-top: 0.6em; 
+    font-size: 80%; 
+} 
+#tabs .ui-tabs-nav li a{ 
+    font-family:Calibri, "Lucida Console", monospace;
+    font-size: 12pt;
+    font-weight: bold;
+} 
+
+#tabs .ui-tabs-nav { 
+    background: transparent;
+    border-width: 0px 0px 1px 0px;
+    -moz-border-radius: 0px; 
+    -webkit-border-radius: 0px; 
+    border-radius: 0px; 
+} 
+#tabs .ui-tabs-panel { 
+    margin: 0em 0.2em 0.2em 0.2em; 
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}

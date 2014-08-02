@@ -1,0 +1,51 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/themes/custom/AllCss")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    @RenderSection("Head")
+</head>
+<body>
+
+    <header>
+        <div class="content-wrapper">
+            <div class="header">
+                <div class="lineBreak"></div>
+                <img alt="Road Transport Media" src="~/Content/themes/custom/images/Operator-Interview.jpg" />
+
+                <div class="lineBreak"></div>
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Manage Calls", "Index", "ManageCallData")</li>
+                        <li style="visibility: @ViewBag.Hidden">@Html.ActionLink("Update Record", "", "", new { @class = "processRecord" })</li>
+                    </ul>
+                </nav>
+                <div class="lineBreak"></div>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="body">
+        <section class="content-wrapper main-content">
+            @RenderBody()
+        </section>
+    </div>
+
+    <footer>
+        <div class="content-wrapper">
+            <div>
+                <p>&copy; @DateTime.Now.Year - Road Transport Media.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

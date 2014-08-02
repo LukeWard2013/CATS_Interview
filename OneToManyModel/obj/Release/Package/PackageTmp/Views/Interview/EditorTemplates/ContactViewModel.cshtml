@@ -1,0 +1,32 @@
+﻿@model CATS_Interview.View_Models.ContactViewModel
+@using CATS_Interview.HTML_Helpers
+@Html.AntiForgeryToken()
+
+<div class="editor">
+    <div class="contact">
+        @Html.HiddenFor(m=>m.OperatorId)
+        @Html.HiddenFor(m => m.ContactId)
+        @Html.HiddenFor(m=>m.Delete, new {@class="mark-for-delete"})
+        @Html.LabelFor2(m=>m.Title)
+        @Html.TextBoxFor(m=>m.Title, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);"})
+        @Html.ValidationMessageFor(m=>m.Title)
+        <br/>
+        @Html.LabelFor2(m=>m.Initial)
+        @Html.TextBoxFor(m=>m.Initial, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);"})
+        @Html.ValidationMessageFor(m=>m.Initial)
+        <br/>
+        @Html.LabelFor2(m=>m.Surname)
+        @Html.TextBoxFor(m=>m.Surname, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);"})
+        @Html.ValidationMessageFor(m=>m.Surname)
+        <br />
+        @Html.LabelFor2(m=>m.ContactPositionOptions)
+        @if (Model.ContactPositionOptions!=null)
+        {
+            @Html.DropDownListFor(model => model.ContactPositionId, Model.ContactPositionOptions, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);"})
+            @Html.ValidationMessageFor(model=>model.ContactPositionId)
+        }
+        <br />
+   
+             @Html.LinkToRemoveNestedItem("Remove contact.", ".contact", "input.mark-for-delete")
+    </div>
+</div>

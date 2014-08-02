@@ -1,0 +1,396 @@
+﻿
+@using System.Web.Optimization
+@using CATS_Interview.HTML_Helpers
+@using CATS_Interview.View_Models
+@model CATS_Interview.Model.OperatorViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "RTM Operator Licence Interview";
+}
+@section Head{
+    @Scripts.Render("~/Scripts/UI_Functions.js")
+}
+@using (Html.BeginForm("Save", "Interview", FormMethod.Post, new { id = "frmInterview" }))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <br />    
+    <br />
+    <br />
+    <br />
+    <br />
+
+    @Html.ValidationSummary(false)
+                                      
+    if (Model.RelatedCompanies != null)
+    {
+        <br /><br />
+        <h3>Below are addresses related to the interview record.</h3>
+    }    
+  
+    <fieldset>
+        <legend>
+            Related Data.
+        </legend>    
+        <div style="height:300px; overflow-y:scroll">
+            @if (Model.RelatedCompanies != null)
+            {
+                for (var i = 0; i < Model.RelatedCompanies.Count; i++)
+                {                
+                    <div style="float: left; padding-right: 50px">
+                        @if (Model.ApplyingAddress != null)
+                        {
+                            if ((bool)Model.ApplyingAddress)
+                            {
+                                <img alt="Applying Address" src="~/Content/themes/custom/images/ApplyingAddress.png" />
+                            }
+                            else
+                            {
+                                <img alt="Applying Address" src="~/Content/themes/custom/images/OperatingCentre.png" />
+                            }
+                        }
+                    </div>  
+
+                     @Html.RadioButtonFor(m => m.SelectedRelatedCompany, Model.RelatedCompanies[i].OperatorId, new { id = "opt" + i, style = "height:30px;width:30px;" })
+
+                    <div style="float:left;padding-right:50px; font-size: 8pt;">
+                        @Model.CompanyName <br />
+                        @(string.IsNullOrEmpty(Model.Address1) ? null : new HtmlString(@Model.Address1 + "<br />"))
+                        @(string.IsNullOrEmpty(Model.Address2) ? null : new HtmlString(@Model.Address2 + "<br />"))
+                        @(string.IsNullOrEmpty(Model.Address3) ? null : new HtmlString(@Model.Address3 + "<br />"))
+                        @(string.IsNullOrEmpty(Model.Address4) ? null : new HtmlString(@Model.Address4 + "<br />"))
+                        @(string.IsNullOrEmpty(Model.Town) ? null : new HtmlString(@Model.Town + "<br />"))
+                        @(string.IsNullOrEmpty(Model.County) ? null : new HtmlString(@Model.County + "<br />"))
+                        @(string.IsNullOrEmpty(Model.Postcode) ? null : new HtmlString(@Model.Postcode + "<br />"))
+                        Licensed to operate - @Model.LicenceTrucks trucks.<br />
+                        Licensed to operate - @Model.LicenceTrailers trailers.        
+                    </div>
+                    <div class="lineBreak"></div>
+                }
+            }
+        </div>
+    </fieldset>
+    <br />
+            if (@Model.ApplyingAddress == null || @Model.ApplyingAddress == false)
+            {
+        <h3>This address is an operating centre</h3>
+            }
+            else
+            {
+        <h3>This address applied for operators licence(s) covering the operating centres above.</h3>
+            }
+    
+    <h3>This address is licensed to run @(Model.LicenceTrucks ?? 0) trucks and @(Model.LicenceTrailers) trailers.</h3>
+            
+    <fieldset>
+        <legend>
+            Operator Data.
+        </legend>
+        @Html.Hidden("InterviewStart", DateTime.Now)
+        @Html.HiddenFor(m => m.OperatorId)
+        <div class="editor">
+            @Html.LabelFor2(m => m.CompanyName)
+            @Html.TextBoxFor(m => m.CompanyName, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.CompanyName)
+        </div>
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.CareOfCompanyName)
+            @Html.TextBoxFor(m => m.CareOfCompanyName, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.CareOfCompanyName)
+        </div>
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.Address1)
+            @Html.TextBoxFor(m => m.Address1, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.Address1)
+        </div>
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.Address2)
+            @Html.TextBoxFor(m => m.Address2, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.Address2)
+        </div>
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.Address3)
+            @Html.TextBoxFor(m => m.Address3, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.Address3)
+        </div>
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.Address4)
+            @Html.TextBoxFor(m => m.Address4, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.Address4)
+        </div>
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.Town)
+            @Html.TextBoxFor(m => m.Town, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.Town)
+        </div>
+
+        <div class="editor">
+            @Html.LabelFor2(m => m.County)
+            @Html.TextBoxFor(m => m.County, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.County)
+        </div>
+
+        <div class="editor">
+            @Html.LabelFor2(m => m.Postcode)
+            @Html.TextBoxFor(m => m.Postcode, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })            
+            <br/>
+            @Html.ValidationMessageFor(m => m.Postcode)
+        </div>
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.TelephoneStd)
+            @Html.TextBoxFor(m => m.TelephoneStd, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })        
+            <br/>
+            @Html.ValidationMessageFor(m => m.TelephoneStd)
+        </div>                
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.TelephoneNumber)
+            @Html.TextBoxFor(m => m.TelephoneNumber, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })     
+            <br/>
+            @Html.ValidationMessageFor(m => m.TelephoneNumber)
+        </div>                                
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.FaxStd)
+            @Html.TextBoxFor(m => m.FaxStd, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.FaxStd)
+        </div>
+                
+        <div class="editor">
+            @Html.LabelFor2(m => m.FaxNumber)
+            @Html.TextBoxFor(m => m.FaxNumber, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.FaxNumber)
+        </div>                
+        <div class="editor">
+            @Html.LabelFor2(m => m.WebAddress)
+            @Html.TextBoxFor(m => m.WebAddress, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(o => o.WebAddress)
+        </div>                 
+        <div class="editor">
+            @Html.LabelFor2(m => m.CompanyEmail)
+            @Html.TextBoxFor(m => m.CompanyEmail, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(o => o.CompanyEmail)
+        </div> 
+        <div class="editor">
+            @Html.LabelFor2(m => m.IntervieweeEmail)
+            @Html.TextBoxFor(m => m.IntervieweeEmail, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(o => o.IntervieweeEmail)
+        </div> 
+    </fieldset>
+    <fieldset>
+        <legend>
+            Primary Business Activity.
+        </legend>                                           
+        <div class="editor">
+            @Html.LabelFor2(m => m.BusinessDescriptionOptionId)
+            @Html.DropDownListFor(m => m.BusinessDescriptionOptionId, Model.BusinessDescriptionOptions, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.BusinessDescriptionOptionId)
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Site workshop.
+        </legend>   
+        <div class="editor">
+            @Html.LabelFor2(m => m.WorkshopOptionId)
+            @Html.DropDownListFor(m => m.WorkshopOptionId, Model.WorkshopOptions, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.WorkshopOptionId)
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Licence applying address
+        </legend>   
+        <div class="editor">
+            @Html.LabelFor(m => m.ApplyingAddress)
+            @Html.EditorFor(m => m.ApplyingAddress)
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Contact Data.
+        </legend>                
+        <div id="contacts">
+            @Html.EditorFor(m => m.Contacts)
+        </div>
+        <p>
+            @{
+            //Instance a contact view model to get a list of job title for new contacts drop down.
+            var contactPositions = new ContactViewModel();
+                @Html.LinkToAddNestedItem(m => m.Contacts, "Add a new contact.", "#contacts", ".contact", contactPositions.ContactPositionOptions, "contacts")
+            }
+        </p>
+    </fieldset>            
+    <fieldset>
+        <legend>
+            Vehicle Data.
+        </legend>                             
+        <!--JQuery will move these into the correct tabs-->
+        @Html.EditorFor(t => t.Trucks)
+        <div id="tabs">
+            <!--Create tabs-->
+            <ul>
+                @foreach (var weight in Model.Trucks)
+                {
+                    <li><a href="#@weight.TruckWeight.WeightValue">@weight.TruckWeight.WeightValue</a></li>                                                                               
+                }
+            </ul> 
+            <!--Create tab containers-->
+            @foreach (var weight in Model.Trucks)
+            {
+                <div id="@weight.TruckWeight.WeightValue"></div>
+            }
+            
+            @Html.EditorFor(model => model.BodyView)
+            @Html.EditorFor(model => model.ChassisView)
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>
+            Used vehicles
+        </legend>    
+        <div class="editor">
+            @Html.LabelFor2(m => m.UsedTrucksOrTrailersOptionId)
+            @Html.DropDownListFor(m => m.UsedTrucksOrTrailersOptionId, Model.UsedTrucksOrTrailersOptions, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            <br/>
+            @Html.ValidationMessageFor(m => m.UsedTrucksOrTrailersOptionId)
+        </div>   
+    </fieldset> 
+    <fieldset>
+        <legend>
+            Trailers
+        </legend>
+        <div class="editor">
+            @Html.LabelFor(m => m.SiteTrailers)
+            @Html.TextBoxFor(m => m.SiteTrailers, new { onfocus = "changeColor('on', this);", onblur = "changeColor('off', this);" })
+            @Html.ValidationMessageFor(m => m.SiteTrailers)
+        </div>
+    </fieldset>                
+    
+    <fieldset>
+        <legend>
+            Finance Methods.
+        </legend>                                                                            
+        <div class="editor">
+            @Html.LabelFor(m => m.FinanceMethodList)
+            @Html.ListBoxFor(m => m.SelectedFinanceMethodOptions, Model.FinanceMethodList, new { ondblclick = "removeItem(this);" })
+        </div>
+        <div class="editor">
+            @Html.LabelFor(m => m.FinanceMethodOptions)
+            @Html.DropDownList("FinanceMethods", Model.FinanceMethodOptions, new { onclick = "addItem(this, $('#" + @Html.IdFor(model => model.SelectedFinanceMethodOptions) + "'));" })
+        </div>
+    </fieldset>
+                
+    <fieldset>
+        <legend>
+            Axle Combinations.
+        </legend>                                                                                            
+
+        <div class="editor">
+            @Html.LabelFor(m => m.AxleCombinationList)
+            @Html.ListBoxFor(m => m.SelectedAxleCombinations, Model.AxleCombinationList, new { ondblclick = "removeItem(this);" })
+        </div>
+        <div class="editor">
+            @Html.LabelFor(m => m.AxleCombinationOptions)
+            @Html.DropDownList("AxleCombinations", Model.AxleCombinationOptions, new { onclick = "addItem(this, $('#" + @Html.IdFor(model => model.SelectedAxleCombinations) + "'));" })
+        </div>
+    </fieldset>                
+    <div class="lineBreak"></div>                                                                                                     
+
+}
+
+<div id="callBack">
+    <div class="editor">
+        <div style="width:100%">
+            <h3>Call back options.</h3>
+            <div class="lineBreak"></div>
+            @foreach (var callOutcomeOption in Model.CallViewModel.CallOutcomeOptions)
+            {
+
+                if (callOutcomeOption.Text.IndexOf("Call back", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    <label id="lbl_@callOutcomeOption.Value" for="opt_@callOutcomeOption.Value" >@callOutcomeOption.Text</label>
+                    @Html.RadioButtonFor(m => Model.CallViewModel.CallOutcomeId, callOutcomeOption.Value, new { id = "opt_" + callOutcomeOption.Value, style = "height:30px;width:30px" })                    
+                    <br/>
+                }
+            }
+        </div>
+        <div style="width:100%">
+            <h3>Other options.</h3>
+            <div class="lineBreak"></div>
+            @foreach (var callOutcomeOption in Model.CallViewModel.CallOutcomeOptions)
+            {
+
+                if (callOutcomeOption.Text.IndexOf("Call back", StringComparison.OrdinalIgnoreCase) < 0)
+                {
+                    <label id="lbl_@callOutcomeOption.Value" for="opt_@callOutcomeOption.Value" >@callOutcomeOption.Text</label>
+                    @Html.RadioButtonFor(m => Model.CallViewModel.CallOutcomeId, callOutcomeOption.Value, new { id = "opt_" + callOutcomeOption.Value, style = "height:30px;width:30px" })                    
+                    <br/>
+                }
+            }
+        </div>
+        <div class="lineBreak"></div>
+    </div>
+    <div class="editor">
+        @Html.LabelFor(m => m.CallViewModel.CallBackDate)
+        @Html.TextBoxFor(m => m.CallViewModel.CallBackDate, new { @class = "datefield" })
+        <br/>
+        @Html.ValidationMessageFor(m => m.CallViewModel.CallBackDate)
+    </div>
+    <div class="editor">
+        @Html.LabelFor(m => m.CallViewModel.Notes)
+        @Html.TextAreaFor(m => m.CallViewModel.Notes, new { cols = "30", rows = "10" })
+        <br/>
+        @Html.ValidationMessageFor(m => m.CallViewModel.Notes)
+    </div>                                                 
+</div>        
+
+    <script>
+        var elementToPlace;
+        var countPrefix = "Count__";
+        var chassisPrefix = "Chassis";
+        var bodyPrefix = "Body";
+        
+        @foreach (var weight in Model.Trucks)
+        {
+<text>
+        divToAddTo = "#" + "@weight.TruckWeight.WeightValue" + "";
+
+        //Add vehicle count into tab for current weight
+        elementToPlace = "#" + countPrefix + "@weight.TruckWeight.WeightValue" + "";
+        $(elementToPlace).appendTo(divToAddTo);
+
+        //Add chassis DIV into tab for current weight
+        elementToPlace = "#" + chassisPrefix + "@weight.TruckWeight.WeightValue" + "";
+        $(elementToPlace).appendTo(divToAddTo);
+
+        //Add bodies DIV into tab for current weight
+        elementToPlace = "#" + bodyPrefix + "@weight.TruckWeight.WeightValue" + "";
+        $(elementToPlace).appendTo(divToAddTo);
+ </text>
+        }
+
+    </script>

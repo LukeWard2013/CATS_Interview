@@ -1,0 +1,15 @@
+﻿@model CATS_Interview.Model.Truck
+@Html.AntiForgeryToken()
+<div id="Count__@Model.TruckWeight.WeightValue">
+    @Html.HiddenFor(t=>t.TruckWeight.WeightValueId)
+    @Html.HiddenFor(t=>t.TruckWeight.WeightValue)
+    @Html.HiddenFor(t=>t.TruckId)
+    @Html.HiddenFor(t=>t.OperatorId)
+    @Html.HiddenFor(t=>t.WeightValueId)
+    <div class ="editor">
+        @Html.LabelFor(t=>t.Count)
+        @Html.EditorFor(t => t.Count)
+    </div>  
+    @Html.ValidationMessageFor(t=>t.Count)
+   <br/>
+</div>

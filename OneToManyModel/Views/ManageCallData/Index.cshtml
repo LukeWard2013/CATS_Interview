@@ -1,0 +1,55 @@
+﻿
+@model IEnumerable<CATS_Interview.Services.CallSummary>
+@{
+    ViewBag.Title = "Manage Calls";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Hidden = "hidden";
+}
+@section Head{
+    <script lang="javascript">
+        $(function () {
+            $("#resetDate").val("");
+            $("#resetDate").datepicker();
+            $("#resetDate").datepicker("option", "dateFormat", "dd/mm/yy");
+            
+            $("#resetDate").datepicker({ showAnim: "fold" });
+            $("#resetDate").rules("add", {
+                required: true,
+                messages: {
+                    required: "Required input"
+                }
+            });
+        });
+    </script>
+}
+<h2>Select the call back dates you want to reset....</h2>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "manageCalls" }))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <br />    
+    <br />
+    <br />
+    <br />
+    <br />    
+    <fieldset>
+        <legend>
+            Call Backs
+        </legend>    
+        @foreach (var call in Model)
+        {
+                <label><input type="checkbox"
+                              name="SelectedCalls"
+                              value="@call.Date"/>
+                    <span>@call.Date - (@call.Count)</span>
+                </label>
+            <br /><br />
+        }
+        @Html.ValidationMessage("resetDate")
+        @Html.Label("Reset date - ")
+        @Html.TextBox("resetDate", "")
+    </fieldset>
+    <div class="lineBreak"></div>  
+    <button value="submit">Update Calls</button>
+    <div class="lineBreak"></div>  
+}
